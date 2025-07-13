@@ -69,6 +69,15 @@
 				"type" : "slider",
 				"value" : 50
 			},
+			"drawHitboxes" : 
+			{
+				"condition" : "mouseactions.value == true",
+				"index" : 15,
+				"order" : 115,
+				"text" : "Interactive Area",
+				"type" : "bool",
+				"value" : false
+			},
 			"fireworks" : 
 			{
 				"index" : 13,
@@ -208,7 +217,7 @@
 	"tags" : [ "Anime" ],
 	"title" : "Blue Archive | Waraku Chise (Swimsuit)",
 	"type" : "Web",
-	"version" : 6,
+	"version" : 7,
 	"visibility" : "public",
 	"workshopid" : "3496522892",
 	"workshopurl" : "steam://url/CommunityFilePage/3496522892"
