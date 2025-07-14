@@ -9,10 +9,10 @@
 			"bgmvolume" : 
 			{
 				"fraction" : false,
-				"index" : 11,
+				"index" : 12,
 				"max" : 100,
 				"min" : 0,
-				"order" : 111,
+				"order" : 112,
 				"text" : "BGM Volume",
 				"type" : "slider",
 				"value" : 20
@@ -45,10 +45,10 @@
 			{
 				"condition" : "mouseactions.value == true && voicelines.value == true && showdialog.value == true",
 				"fraction" : true,
-				"index" : 7,
+				"index" : 8,
 				"max" : 100,
 				"min" : 0,
-				"order" : 107,
+				"order" : 108,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "DialogX",
@@ -59,10 +59,10 @@
 			{
 				"condition" : "mouseactions.value == true && voicelines.value == true && showdialog.value == true",
 				"fraction" : true,
-				"index" : 8,
+				"index" : 9,
 				"max" : 100,
 				"min" : 0,
-				"order" : 108,
+				"order" : 109,
 				"precision" : 2,
 				"step" : 0.1,
 				"text" : "DialogY",
@@ -113,8 +113,8 @@
 			"headpatting" : 
 			{
 				"condition" : "mouseactions.value == true",
-				"index" : 9,
-				"order" : 109,
+				"index" : 10,
+				"order" : 110,
 				"text" : "Headpatting",
 				"type" : "bool",
 				"value" : true
@@ -138,8 +138,8 @@
 			"mousetracking" : 
 			{
 				"condition" : "mouseactions.value == true",
-				"index" : 10,
-				"order" : 110,
+				"index" : 11,
+				"order" : 111,
 				"text" : "Mouse Tracking",
 				"type" : "bool",
 				"value" : true
@@ -149,10 +149,10 @@
 				"fraction" : true,
 				"index" : 0,
 				"max" : 2,
-				"min" : 0.8,
+				"min" : 0.7,
 				"order" : 100,
-				"precision" : 2,
-				"step" : 0.1,
+				"precision" : 3,
+				"step" : 0.01,
 				"text" : "Scale",
 				"type" : "slider",
 				"value" : 0.8
@@ -216,8 +216,8 @@
 	"snapshotoverlay" : "",
 	"tags" : [ "Anime" ],
 	"title" : "Blue Archive | Waraku Chise (Swimsuit)",
-	"type" : "Web",
-	"version" : 7,
+	"type" : "web",
+	"version" : 8,
 	"visibility" : "public",
 	"workshopid" : "3496522892",
 	"workshopurl" : "steam://url/CommunityFilePage/3496522892"
