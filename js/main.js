@@ -43,7 +43,8 @@ const subtitleLocales = {
 	Chinese: 'zh-Hans',
 	TraditionalChinese: 'zh-Hant',
 	Japanese: 'ja',
-	Korean: 'ko'
+	Korean: 'ko',
+	Thai: 'th'
 };
 
 const CHARACTER = 'CH0178';
@@ -66,8 +67,8 @@ const AUDIO_DETAIL = [
 				"Why are you blushing?"
 			],
 			Chinese: [
-				"老师...你怎么了？",
-				"脸好红啊"
+				"老师，怎么了？",
+				"你的脸好红呀？"
 			],
 			TraditionalChinese: [
 				"老師，你怎麼了？",
@@ -76,7 +77,8 @@ const AUDIO_DETAIL = [
 			Korean: [
 				"선생님? 왜 그래?",
 				"얼굴이 빨간데-?"
-			]
+			],
+			Thai: ["คุณครู เป็นอะไรเหรอ?","ทำไมถึงหน้าแดงเชียว?"]
 		}
 	},
 	{
@@ -90,8 +92,8 @@ const AUDIO_DETAIL = [
 				"By the way, Sensei, look over here. Look."
 			],
 			Chinese: [
-				"没事就好",
-				"话说，老师，看这里。这里"
+				"没事就太好了。",
+				"老师，看这里，这里。"
 			],
 			TraditionalChinese: [
 				"沒事就好。",
@@ -100,7 +102,8 @@ const AUDIO_DETAIL = [
 			Korean: [
 				"괜찮다면, 상관없지만-",
 				"그보다 선생님 여기 봐봐. 여기."
-			]
+			],
+			Thai: ["ถ้าคุณครูบอกว่าไม่เป็นอะไร ก็คงไม่เป็นอะไรจริงๆ","แต่ว่านะคุณครู ดูนี่สิ นี่น่ะ"]
 		}
 	},
 	{
@@ -114,8 +117,8 @@ const AUDIO_DETAIL = [
 				"The tails are so fluffy. Fluffy!"
 			],
 			Chinese: [
-				"乌龟也有甲壳呢。还非常硬",
-				"但其实尾巴那里软乎乎的。软乎乎的哦"
+				"虽然海龟先生们的壳，都非常非常硬～",
+				"但它们的尾巴，摸起来可是软绵绵的呢，软绵绵～"
 			],
 			TraditionalChinese: [
 				"烏龜先生的背殼，雖然非常的硬～",
@@ -124,7 +127,8 @@ const AUDIO_DETAIL = [
 			Korean: [
 				"거북이 씨의 등껍질은~ 엄청 딱딱한데-",
 				"사실 꼬리 부분은, 말랑말랑해. 말랑말~랑"
-			]
+			],
+			Thai: ["กระดองของคุณเต่า~ มันแข็งมากๆ เลย","แต่ที่จริงตรงส่วนหางน่ะ มันนุ่มนิ่มๆ นะ นู่มมม~ นิ่ม"]
 		}
 	},
 	{
@@ -138,8 +142,8 @@ const AUDIO_DETAIL = [
 				"Sensei? Here, over here."
 			],
 			Chinese: [
-				"怎么样？老师要不要摸摸看？软软的哦",
-				"老师，是这里哟。摸这里才对"
+				"怎么样？老师也想摸摸看吗？软绵绵的哦。",
+				"老师？这里，是这里哦？"
 			],
 			TraditionalChinese: [
 				"如何？老師也要摸摸看嗎？軟綿綿的唷。",
@@ -148,7 +152,8 @@ const AUDIO_DETAIL = [
 			Korean: [
 				"어때? 선생님도 만져볼래? 말랑말랑하다구.",
 				"선생님? 여기야- 여기?"
-			]
+			],
+			Thai: ["คุณครูคิดว่ายังไงล่ะ? คุณครูก็ลองจับดูหน่อยมั้ย? บอกแล้วว่ามันนุ่มนิ่มมากๆ","คุณครู ทางนี้ ตรงนี้ล่ะ"]
 		}
 	},
 	{
@@ -162,8 +167,8 @@ const AUDIO_DETAIL = [
 				"...Why is that? Sensei?"
 			],
 			Chinese: [
-				"现在稍微有点，困扰？",
-				"为什么呢，为什么呀，老师……"
+				"现在有点不方便……？",
+				"……为什么？怎么了？老师？"
 			],
 			TraditionalChinese: [
 				"現在有點傷腦筋…？",
@@ -172,7 +177,8 @@ const AUDIO_DETAIL = [
 			Korean: [
 				"지금은 살짝 곤란해…?",
 				"…왜? 어째서? 선생님~?"
-			]
+			],
+			Thai: ["ตอนนี้คงไม่เหมาะงั้นเหรอ?","ทำไมล่ะ...? มีอะไรเหรอ? คุณครู~?"]
 		}
 	}
 ];
@@ -284,7 +290,7 @@ function playVoiceline() {
 			track.play().catch(finish);
 
 			if (dialogBox) {
-				textbox.textContent = dialog[window.selectedLanguage][index];
+				textbox.textContent = getSubtitleText(dialog, window.selectedLanguage, index);
 				textbox.style.opacity = 1;
 			}
 		},
@@ -454,6 +460,16 @@ function setMouse(event) {
 	return { x: ax - canvas.width * positionX, y: ay - canvas.height * positionY };
 }
 
+function getSubtitleText(dialog, language, index) {
+	let text = dialog?.[language]?.[index];
+	if (text == null && language === 'Thai') {
+		language = 'English';
+		text = dialog?.[language]?.[index];
+	}
+	textbox.lang = subtitleLocales[language];
+	return text ?? "";
+}
+
 function updateSubtitleLanguage() {
 	let language = subtitleLanguagePreference;
 	if (language === 'auto') {
@@ -467,6 +483,8 @@ function updateSubtitleLanguage() {
 			language = 'Japanese';
 		} else if (primary === 'ko' || primary === 'korean' || primary === 'koreana') {
 			language = 'Korean';
+		} else if (primary === 'th' || primary === 'thai') {
+			language = 'Thai';
 		} else {
 			language = 'English';
 		}
@@ -476,7 +494,7 @@ function updateSubtitleLanguage() {
 	window.selectedLanguage = language;
 	textbox.lang = subtitleLocales[language];
 	const clip = currentTracks.at(-1);
-	if (dialogBox && clip) textbox.textContent = clip.dialog[language][clip.index];
+	if (dialogBox && clip) textbox.textContent = getSubtitleText(clip.dialog, language, clip.index);
 }
 
 function init() {
